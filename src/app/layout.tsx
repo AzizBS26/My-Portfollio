@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
+import { ChatAssistant } from "@/components/chat-assistant";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -62,6 +63,7 @@ export default function RootLayout({
         />
         {children}
         <Toaster />
+        <ChatAssistant />
       </body>
     </html>
   );

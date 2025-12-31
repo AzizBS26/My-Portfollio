@@ -39,7 +39,7 @@ const INTERNSHIPS = [
     company: 'Première Consulting',
     location: 'Tunis, Tunisia',
     period: 'Jul 2025 - Aug 2025',
-    duration: '1 month',
+    duration: '2 months',
     description: 'Designed and deployed a multilingual legal chatbot system that enhanced query resolution efficiency. Applied advanced NLP techniques to improve legal query matching accuracy with dynamic database retrieval.',
     achievements: [
       'Designed and deployed a multilingual legal chatbot enhancing query resolution efficiency',
@@ -194,7 +194,7 @@ export default function ExperiencePage() {
                 <p className="text-muted-foreground">Internships Completed</p>
               </div>
               <div className="text-center">
-                <div className="text-4xl font-bold text-primary mb-2">7+</div>
+                <div className="text-4xl font-bold text-primary mb-2">8+</div>
                 <p className="text-muted-foreground">Months of Experience</p>
               </div>
               <div className="text-center">
@@ -215,10 +215,10 @@ export default function ExperiencePage() {
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <Button size="lg" asChild>
-              <Link href="/#contact">Get In Touch</Link>
+              <Link href="/contact">Get In Touch</Link>
             </Button>
             <Button size="lg" variant="outline" asChild>
-              <Link href="/">View All Projects</Link>
+              <Link href="/projects">View All Projects</Link>
             </Button>
           </div>
         </div>

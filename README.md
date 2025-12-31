@@ -1,12 +1,21 @@
 # Mohamed Aziz Ben Slima - Portfolio
 
-A modern, AI-focused portfolio website showcasing my expertise in Data Science, Machine Learning, and Full-Stack Development.
+A modern, AI-focused portfolio website showcasing my expertise in Data Science, Machine Learning, and Full-Stack Development. Features an intelligent AI-powered chat assistant for interactive visitor engagement.
 
 ## 🌟 Features
 
 - **Modern Next.js 15 Stack**: Built with React 19, TypeScript, and App Router
 - **Dark/Light Theme**: Persistent theme toggle with smooth transitions
 - **Responsive Design**: Mobile-first approach with Tailwind CSS
+- **🤖 AI-Powered Chat Assistant**: 
+  - Floating chat bubble with logo branding
+  - Real-time streaming responses from Groq API
+  - Markdown rendering for formatted responses
+  - Welcome screen with suggested questions
+  - Follow-up questions for deeper conversations
+  - Rate limiting for secure API usage
+  - Responsive design (mobile & desktop)
+  - Modern glassmorphism header with online status indicator
 - **Dynamic Content**: 
   - Projects (Academic, Internship, Personal)
   - Certifications (18+ professional credentials)
@@ -21,8 +30,9 @@ A modern, AI-focused portfolio website showcasing my expertise in Data Science, 
 - **Frontend**: Next.js 15.3.5, React 19, TypeScript 5
 - **Styling**: Tailwind CSS 4, Custom CSS Variables
 - **UI Components**: shadcn/ui, Lucide Icons, React Icons
+- **AI Integration**: Groq API (llama-3.3-70b-versatile), Vercel AI SDK
 - **Database**: PostgreSQL with Prisma ORM
-- **Deployment**: Docker, Caddy Server
+- **Deployment**: Docker, Caddy Server, Vercel
 - **Package Manager**: Bun
 
 ## 📂 Project Structure
@@ -40,17 +50,23 @@ src/
 │   ├── activities/        # All activities
 │   ├── contact/           # Contact page
 │   └── api/               # API routes
+│       └── chat/          # Chat API endpoint (POST /api/chat)
 ├── components/            # React components
-│   ├── navbar.tsx        # Navigation component
-│   └── ui/               # shadcn/ui components
-├── lib/                  # Utility functions
-└── hooks/                # React hooks
+│   ├── chat-assistant.tsx # AI chat bubble component
+│   ├── navbar.tsx         # Navigation component
+│   └── ui/                # shadcn/ui components
+├── lib/                   # Utility functions
+│   ├── db.ts             # Database utilities
+│   ├── cv-context.ts     # CV data & suggested questions for AI
+│   └── utils.ts          # Helper functions
+└── hooks/                 # React hooks
 
 public/
 ├── icons/                # SVG/ICO icons
 ├── activities/           # Activity images
 ├── certifications/       # Certification images
-└── profile.jpg           # Profile photo
+├── logo-AB.svg          # Chat assistant logo
+└── profile.jpg          # Profile photo
 
 prisma/
 └── schema.prisma         # Database schema
@@ -61,12 +77,13 @@ prisma/
 ### Prerequisites
 - Node.js 18+ or Bun
 - PostgreSQL (optional, for database features)
+- Groq API Key (for AI chat assistant) - Get free at [console.groq.com](https://console.groq.com)
 
 ### Setup
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/AzizBS26/portfolio.git
+git clone https://github.com/yourusername/portfolio.git
 cd portfolio
 ```
 
@@ -80,7 +97,12 @@ npm install
 3. Configure environment variables:
 ```bash
 cp .env.example .env.local
-# Edit .env.local with your settings
+```
+
+Edit `.env.local` and add your Groq API key:
+```env
+GROQ_API_KEY=your_groq_api_key_here
+DATABASE_URL=your_database_url_optional
 ```
 
 4. Run development server:
@@ -91,6 +113,47 @@ npm run dev
 ```
 
 5. Open [http://localhost:3000](http://localhost:3000) in your browser
+
+## 💬 AI Chat Assistant Setup
+
+The portfolio includes an intelligent AI chat assistant powered by Groq:
+
+### Features
+- **Streaming Responses**: Real-time response streaming for smooth UX
+- **Markdown Support**: Formatted text with bold, italic, and lists
+- **CV Context**: Automatically provides information about your background
+- **Suggested Questions**: Guide visitors with pre-defined questions
+- **Rate Limiting**: 10 requests per minute per IP to prevent abuse
+- **Responsive UI**: Works seamlessly on mobile and desktop
+- **Theme Support**: Works in both dark and light modes
+
+### Configuration
+1. Get your Groq API key from [console.groq.com](https://console.groq.com) (free tier available)
+2. Add to `.env.local`:
+```env
+GROQ_API_KEY=your_key_here
+```
+
+### Customization
+Edit `src/lib/cv-context.ts` to customize:
+- CV information displayed in responses
+- Suggested questions shown to visitors
+- System prompt for the AI
+
+Example:
+```typescript
+export const CV_CONTEXT = `Your CV content here...`
+export const SUGGESTED_QUESTIONS = [
+  "What is your experience with AI?",
+  "Tell me about your projects...",
+  // Add more questions
+]
+```
+
+Edit `src/app/api/chat/route.ts` to change:
+- AI model (currently: llama-3.3-70b-versatile)
+- Temperature and response length
+- Rate limiting parameters
 
 ## 📝 Customization
 
@@ -140,22 +203,38 @@ Edit color variables in CSS files:
 - Accent color: `#00FFFF` (Cyan)
 - Support for dark/light modes
 
+### Chat Assistant Styling
+The chat bubble is fully customizable:
+- **Logo**: Edit the `<img>` in `src/components/chat-assistant.tsx` (currently using `/logo-AB.svg`)
+- **Colors**: Modify Tailwind classes in the component
+- **Position**: Change `bottom-4 right-4` to reposition the bubble
+- **Animations**: Edit keyframes in the `<style>` block
+
 ## 🚢 Deployment
+
+### Vercel (Recommended - Free & Easy)
+```bash
+# Install Vercel CLI
+npm i -g vercel
+
+# Deploy
+vercel
+```
+
+**Important**: Make sure to add environment variables in Vercel dashboard:
+1. Go to Project Settings → Environment Variables
+2. Add `GROQ_API_KEY` with your Groq API key
+3. Redeploy
 
 ### Docker
 ```bash
 docker build -t portfolio .
-docker run -p 3000:3000 portfolio
-```
-
-### Vercel (Recommended)
-```bash
-vercel deploy
+docker run -p 3000:3000 -e GROQ_API_KEY=your_key portfolio
 ```
 
 ### Other Platforms
-- Netlify
-- GitHub Pages
+- Netlify (with serverless functions)
+- GitHub Pages (static only)
 - Traditional hosting (with Node.js support)
 
 ## 📄 Pages
@@ -210,3 +289,5 @@ MIT License - Feel free to use this for your portfolio
 For any questions about the portfolio, feel free to reach out!
 
 ---
+
+**Built with ❤️ using Next.js, React, and Tailwind CSS**
