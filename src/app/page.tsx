@@ -42,7 +42,9 @@ import {
   Users,
   RefreshCw,
   Lightbulb,
-  Clock
+  Clock,
+  FileText,
+  Download
 } from 'lucide-react'
 import { 
   FaAws,
@@ -1098,6 +1100,30 @@ export default function PortfolioPage() {
                     <p className="font-medium">LinkedIn</p>
                     <p className="text-sm text-muted-foreground">Connect with me</p>
                   </div>
+                </a>
+
+                <Separator className="my-4" />
+
+                {/* CV Download */}
+                <a
+                  href="/cv.pdf"
+                  download
+                  className="flex items-center gap-3 p-4 rounded-lg bg-gradient-to-r from-accent/10 to-primary/10 border border-accent/30 hover:border-accent hover:shadow-lg hover:shadow-accent/20 transition-all group relative overflow-hidden"
+                >
+                  {/* Shimmer effect */}
+                  <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+                  
+                  <div className="h-10 w-10 bg-accent/20 rounded-full flex items-center justify-center group-hover:bg-accent/30 transition-colors relative z-10">
+                    <FileText className="h-5 w-5 text-accent" />
+                  </div>
+                  <div className="flex-1 relative z-10">
+                    <div className="flex items-center gap-2">
+                      <p className="font-semibold">Download CV</p>
+                      <Badge variant="outline" className="text-[10px] px-1.5 py-0 border-accent/40">PDF</Badge>
+                    </div>
+                    <p className="text-xs text-muted-foreground">Updated Dec 2025</p>
+                  </div>
+                  <Download className="h-4 w-4 text-accent group-hover:translate-y-0.5 transition-transform relative z-10" />
                 </a>
               </CardContent>
             </Card>

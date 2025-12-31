@@ -7,7 +7,8 @@ import Navbar from '@/components/navbar'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
-import { Brain, GraduationCap, Zap, ChevronRight } from 'lucide-react'
+import { Brain, GraduationCap, Zap, ChevronRight, FileText, Download, Linkedin, Github, Mail } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 
 const PERSONAL_INFO = {
   name: 'Mohamed Aziz Ben Slima',
@@ -96,6 +97,35 @@ export default function AboutPage() {
               <p className="text-base text-muted-foreground leading-relaxed">
                 {PERSONAL_INFO.bio}
               </p>
+              
+              {/* CV Download & Social Links */}
+              <div className="flex flex-wrap gap-3 mt-6">
+                <Button 
+                  className="gap-2 btn-glow bg-gradient-to-r from-accent to-primary hover:shadow-2xl hover:shadow-accent/50 transition-all font-semibold group relative overflow-hidden"
+                  asChild
+                >
+                  <a href="/cv.pdf" download>
+                    {/* Shimmer effect */}
+                    <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+                    <Download className="h-4 w-4 relative z-10" /> 
+                    <span className="relative z-10 flex items-center gap-2">
+                      Download CV
+                      <Badge variant="secondary" className="text-[10px] px-1.5 py-0 bg-white/20">PDF</Badge>
+                    </span>
+                  </a>
+                </Button>
+                <Button variant="outline" className="gap-2 border-accent/40 hover:bg-accent/10 hover:border-accent" asChild>
+                  <a href={PERSONAL_INFO.linkedin} target="_blank" rel="noopener noreferrer">
+                    <Linkedin className="h-4 w-4" /> LinkedIn
+                  </a>
+                </Button>
+                <Button variant="outline" className="gap-2 border-accent/40 hover:bg-accent/10 hover:border-accent" asChild>
+                  <a href={PERSONAL_INFO.github} target="_blank" rel="noopener noreferrer">
+                    <Github className="h-4 w-4" /> GitHub
+                  </a>
+                </Button>
+              </div>
+              <p className="text-xs text-muted-foreground mt-3 italic">CV last updated: December 2025</p>
             </div>
           </div>
 
