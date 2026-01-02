@@ -49,6 +49,13 @@ const CERTIFICATIONS: Array<{ name: string; issuer: string; date: string; image?
     icon: <img src="/icons/datacamp-svgrepo-com.svg" alt="DataCamp" className="w-6 h-6 opacity-90" />
   },
   {
+    name: 'Associate AI Engineer for Data Science Associate',
+    issuer: 'DataCamp',
+    date: '2025',
+    image: '/certifications/AssociateAIEngineer.png',
+    icon: <img src="/icons/datacamp-svgrepo-com.svg" alt="DataCamp" className="w-6 h-6 opacity-90" />
+  },
+  {
     name: 'Developing LLM Applications with LangChain',
     issuer: 'DataCamp',
     date: '2025',
